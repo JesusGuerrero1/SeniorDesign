@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.smartmirror.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_edit"
+        android:name="com.example.smartmirror.ui.edit.EditFragment"
+        android:label="@string/menu_edit"
+        tools:layout="@layout/fragment_edit" >
+        <action
+            android:id="@+id/action_nav_edit_to_widgetsFragment"
+            app:destination="@id/widgetsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.smartmirror.ui.profile.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_app"
+        android:name="com.example.smartmirror.ui.app.AppFragment"
+        android:label="@string/menu_app"
+        tools:layout="@layout/fragment_app" />
+    <fragment
+        android:id="@+id/widgetsFragment"
+        android:name="com.example.smartmirror.ui.edit.widgetsMenu.WidgetsFragment"
+        android:label="fragment_widgets"
+        tools:layout="@layout/fragment_widgets" />
+</navigation>
