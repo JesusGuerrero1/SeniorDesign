@@ -10,7 +10,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.smartmirror.R;
 import com.example.smartmirror.SectionsPageAdapter;
-import com.example.smartmirror.data;
 import com.google.android.material.tabs.TabLayout;
 
 public class EditFragment extends Fragment {
@@ -49,26 +48,6 @@ public class EditFragment extends Fragment {
 
 
         return view;
-    }
-
-    @Override
-    public void onDestroyView() {
-        if(!data.Setup1Saved){
-            data.clockEnabled = false;
-            data.emailEnabled = false;
-        }
-
-        if(!data.Setup2Saved){
-            data.clock2Enabled = false;
-            data.email2Enabled = false;
-        }
-
-        if(!data.Setup3Saved){
-            data.clock3Enabled = false;
-            data.email3Enabled = false;
-        }
-
-        super.onDestroyView();
     }
 }
 

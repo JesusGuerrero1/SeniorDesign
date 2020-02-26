@@ -8,67 +8,111 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 
 public class data extends Application {
-//Before SQL connection sqlData.class
-//AWS mySQL database username: smartmirror
-//
-//password: hksahfih18$?
 
-    private static final String ROOT_URL = "http://192.168.101.1/HeroApi/v1/Api.php?apicall=";
+    //UNIQUE_ID    |   clock_state   |   clockX  |  clockY  |   weather_state   |   weatherX    |   weatherY    |   greeting_state  |   greetingX   |   greetingY   |   currently_used
+    //uniqueId         clockEnabled      clockX     clockY      weatherEnabled      weatherX        weatherY        greetingEnabled     greetingX       greetingY
 
-    //  Store data in an array [number of widgets][4 properties]
-    //  widgets [widget number] [Page Number, enabled 0 = false/1 = true, x coordinate, y coordinate]
+    public static String [] page1Data = new String [9];
+    public static String [] emailWidget1 = new String [4];
 
-    //public static int [][] widgets = new int [2][4];
+    public static void parseData(String [] p, boolean clkEnabled, int clkX, int clkY, boolean wthEnabled, int wthX, int wthY){
+        //Turn all data into a string array
+        if(clkEnabled){
+            p[0] = 1+"";
+        }else{
+            p[0] = 0+"";
+        }
+        p[1] = clkX+"";
+        p[2] = clkY+"";
 
-    //SETUP 1 VARIABLES
+        if(wthEnabled){
+            p[3] = 1 + "";
+        }else{
+            p[3] = 0 + "";
+        }
+        p[4] = wthX + "";
+        p[5] = wthY + "";
+    }
+
+    public static void parseReceivedData(String gotData){
+        String delims = "[,]";
+        String [] tokens = gotData.split(delims);
+        Log.e("Tokens",tokens[0]);
+        Log.e("Tokens",tokens[1]);
+        Log.e("Tokens",tokens[2]);
+        Log.e("Tokens",tokens[3]);
+        if(tokens[0].equals("1")){
+            data.clockEnabled = true;
+        }else{
+            data.clockEnabled = false;
+        }
+
+        data.xClock = Integer.parseInt(tokens[1]);
+        data.yClock = Integer.parseInt(tokens[2]);
+
+        if(tokens[3].equals("1")){
+            data.weatherEnabled = true;
+        }else{
+            data.weatherEnabled = false;
+        }
+
+        data.xWeather = Integer.parseInt(tokens[4]);
+        data.yWeather = Integer.parseInt(tokens[5]);
+    }
+
+
+    public static void initVars(){
+        //Enables widgets on the screen
+        clockEnabled = false;
+        weatherEnabled = false;
+
+        //X,Y coordinates for widgets
+        xClock = 0;
+        yClock = 0;
+        xWeather = 200;
+        yWeather = 0;
+    }
+
+
+    //PAGE 1 VARIABLES
 
     //Enables widgets on the screen
     public static boolean clockEnabled = false;
-    public static boolean emailEnabled = false;
+    public static boolean weatherEnabled = false;
 
     //X,Y coordinates for widgets
     public static int xClock = 0;
     public static int yClock = 0;
-    public static int xEmail = 700;
-    public static int yEmail = 750;
+    public static int xWeather = 200;
+    public static int yWeather = 0;
 
-    //SETUP 2 VARIABLES
+    //PAGE 2 VARIABLES
 
     //Enables widgets on the screen
     public static boolean clock2Enabled = false;
-    public static boolean email2Enabled = false;
+    public static boolean weather2Enabled = false;
 
     //X,Y coordinates for widgets
-    public static int xClock2 = 600;
-    public static int yClock2 = 750;
-    public static int xEmail2 = 700;
-    public static int yEmail2 = 750;
+    public static int xClock2 = 0;
+    public static int yClock2 = 0;
+    public static int xWeather2 = 200;
+    public static int yWeather2 = 0;
 
-    //SETUP 3 VARIABLES
+    //PAGE 3 VARIABLES
 
     //Enables widgets on the screen
     public static boolean clock3Enabled = false;
-    public static boolean email3Enabled = false;
+    public static boolean weather3Enabled = false;
 
     //X,Y coordinates for widgets
-    public static int xClock3 = 600;
-    public static int yClock3 = 750;
-    public static int xEmail3 = 700;
-    public static int yEmail3 = 750;
+    public static int xClock3 = 0;
+    public static int yClock3 = 0;
+    public static int xWeather3 = 200;
+    public static int yWeather3 = 0;
 
-    //Flags for saving views
-    public static boolean Setup1Saved = false;
-    public static boolean Setup2Saved = false;
-    public static boolean Setup3Saved = false;
-
-
-    //For testing SQL Get and Send buttons
-    public static int x = 150;
-    public static int y = 300;
 
     //Responses from getting data from the SQL server
     public static String response = "No Response";
-    public static String coordinates = "No coordinates";
 
     //Data from user Google profile
     public static String personName;
@@ -77,6 +121,8 @@ public class data extends Application {
     public static String personEmail;
     public static String personId;
     public static Uri personPhoto;
+
+
 
     //Height and width of mirror view
     public static int mirrorHeight = 20;

@@ -107,11 +107,11 @@ public class HomeFragment extends Fragment {
             clockImage.setVisibility(root.INVISIBLE);
         }
 
-        if(data.emailEnabled){
+        if(data.weatherEnabled){
             emailImage.setVisibility(root.VISIBLE);
             //Sets coordinates of email image
-            lp.leftMargin = data.xEmail;
-            lp.topMargin = data.yEmail;
+            lp.leftMargin = data.xWeather;
+            lp.topMargin = data.yWeather;
 
             mirrorView.addView(emailImage, lp);
         }

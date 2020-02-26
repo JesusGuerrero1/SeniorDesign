@@ -27,7 +27,7 @@ public class HomeSetup2Fragment extends Fragment {
 
         //Creates a new image clock
         ImageView clockImage = root.findViewById(R.id.clock2);
-        ImageView emailImage = root.findViewById(R.id.email2);
+        ImageView weatherImage = root.findViewById(R.id.weather2);
 
         //Size of images
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(100,100);
@@ -37,8 +37,8 @@ public class HomeSetup2Fragment extends Fragment {
         //Removes views from parent to change location
         if(clockImage.getParent() != null) {
             ((ViewGroup) clockImage.getParent()).removeView(clockImage);
-            if(emailImage.getParent() != null){
-                ((ViewGroup) emailImage.getParent()).removeView(emailImage);
+            if(weatherImage.getParent() != null){
+                ((ViewGroup) weatherImage.getParent()).removeView(weatherImage);
             }
         }
 
@@ -55,16 +55,16 @@ public class HomeSetup2Fragment extends Fragment {
             clockImage.setVisibility(root.INVISIBLE);
         }
 
-        if(data.email2Enabled){
-            emailImage.setVisibility(root.VISIBLE);
+        if(data.weather2Enabled){
+            weatherImage.setVisibility(root.VISIBLE);
             //Sets coordinates of email image
-            lp.leftMargin = data.xEmail2;
-            lp.topMargin = data.yEmail2;
+            lp.leftMargin = data.xWeather2;
+            lp.topMargin = data.yWeather2;
 
-            mirrorView.addView(emailImage, lp);
+            mirrorView.addView(weatherImage, lp);
         }
         else{
-            emailImage.setVisibility(root.INVISIBLE);
+            weatherImage.setVisibility(root.INVISIBLE);
         }
 
         //Toast.makeText(getActivity(), "Coordinates ("+ data.xClock + ", " + data.yClock + ")",Toast.LENGTH_SHORT).show();

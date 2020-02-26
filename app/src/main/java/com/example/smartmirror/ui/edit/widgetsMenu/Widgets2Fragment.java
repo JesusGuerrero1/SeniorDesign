@@ -21,7 +21,7 @@ public class Widgets2Fragment extends Fragment {
 
         // initiate view's
         ImageButton addClockBtn = root.findViewById(R.id.addClock2);
-        ImageButton addEmailBtn = root.findViewById(R.id.addEmail2);
+        ImageButton addEmailBtn = root.findViewById(R.id.addWeather2);
 
 
 
@@ -43,12 +43,12 @@ public class Widgets2Fragment extends Fragment {
         addEmailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!data.email2Enabled){
-                    data.email2Enabled = true;
+                if(!data.weather2Enabled){
+                    data.weather2Enabled = true;
                     Toast.makeText(getActivity(),"Added Email",Toast.LENGTH_LONG).show();// display the toast on you tube button click
                 }
                 else{
-                    data.email2Enabled = false;
+                    data.weather2Enabled = false;
                     Toast.makeText(getActivity(),"Removed Email",Toast.LENGTH_LONG).show();// display the toast on you tube button click
                 }
                 switchFragment();

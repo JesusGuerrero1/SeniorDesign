@@ -41,28 +41,27 @@ public class Setup2Fragment extends Fragment {
 
         //Creates clock image and sets it enabled on screen
         ImageView clockImage = root.findViewById(R.id.clockImage2);
-        ImageView emailImage = root.findViewById(R.id.emailImage2);
+        ImageView weatherImage = root.findViewById(R.id.weatherImage2);
 
         //Removes views from parent to change location
         if(clockImage.getParent() != null) {
             ((ViewGroup) clockImage.getParent()).removeView(clockImage);
-            if(emailImage.getParent() != null){
-                ((ViewGroup) emailImage.getParent()).removeView(emailImage);
+            if(weatherImage.getParent() != null){
+                ((ViewGroup) weatherImage.getParent()).removeView(weatherImage);
             }
         }
 
         clockImage.setEnabled(data.clock2Enabled);
-        emailImage.setEnabled(data.email2Enabled);
+        weatherImage.setEnabled(data.weather2Enabled);
 
         //Change location of image
         layoutParams.leftMargin = data.xClock2;
         layoutParams.topMargin = data.yClock2;
-        Log.e("Coords clock", layoutParams.leftMargin + ", " + layoutParams.topMargin);
+        Log.d("Coords clock", layoutParams.leftMargin + ", " + layoutParams.topMargin);
 
         //Allows user to move the widget depending on if it's enabled
         if(data.clock2Enabled){
             clockImage.setVisibility(root.VISIBLE);
-            Log.e("Coords clock", layoutParams.leftMargin + ", " + layoutParams.topMargin);
             dragdropLayout.addView(clockImage, layoutParams);
             //Move the image
             clockImage.setOnTouchListener(onTouchListener());
@@ -74,19 +73,19 @@ public class Setup2Fragment extends Fragment {
         //Layout for Image size
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(100,100);
         //Change location of image
-        lp.leftMargin = data.xEmail2;
-        lp.topMargin = data.yEmail2;
-        Log.e("Coords email", lp.leftMargin + ", " + lp.topMargin);
+        lp.leftMargin = data.xWeather2;
+        lp.topMargin = data.yWeather2;
+        Log.d("Coords Weather", lp.leftMargin + ", " + lp.topMargin);
 
         //Allows for image to move if it's enabled
-        if(data.email2Enabled){
-            dragdropLayout.addView(emailImage, lp);
-            emailImage.setVisibility(root.VISIBLE);
+        if(data.weather2Enabled){
+            dragdropLayout.addView(weatherImage, lp);
+            weatherImage.setVisibility(root.VISIBLE);
             //Move the image
-            emailImage.setOnTouchListener(onTouchListener());
+            weatherImage.setOnTouchListener(onTouchListener());
         }
         else{
-            emailImage.setVisibility(root.INVISIBLE);
+            weatherImage.setVisibility(root.INVISIBLE);
         }
 
 
@@ -99,6 +98,11 @@ public class Setup2Fragment extends Fragment {
         super.onCreateOptionsMenu(menu,inflater);
     }
 
+    /**
+     * This handles the selection of the corner drop down menu
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         //handle menu item clicks
@@ -114,21 +118,22 @@ public class Setup2Fragment extends Fragment {
             if(data.clock2Enabled) {
                 data.xClock2 = sets[0][0];
                 data.yClock2 = sets[0][1];
-                Log.e("Coords saved", data.xClock2 + ", " + data.yClock2);
             }
 
-            if(data.email2Enabled) {
-                data.xEmail2 = sets[1][0];
-                data.yEmail2 = sets[1][1];
-                Log.e("Coords saved", data.xEmail2 + ", " + data.yEmail2);
+            if(data.weather2Enabled) {
+                data.xWeather2 = sets[1][0];
+                data.yWeather2 = sets[1][1];
             }
-            data.Setup2Saved = true;
+            Toast.makeText(getActivity(), "Coordinates saved.",Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
 
 
-    //Handles the movement of an image
+    /**
+     * This method handles the movement of the images
+     * @return
+     */
     private View.OnTouchListener onTouchListener() {
         return new View.OnTouchListener() {
 
@@ -185,11 +190,13 @@ public class Setup2Fragment extends Fragment {
                             case R.id.clockImage2:
                                 sets[0][0] = lP.leftMargin;
                                 sets[0][1] = lP.topMargin;
-                                Toast.makeText(getActivity(), "Coordinates ("+ sets[0][0] + ", " + sets[0][1] + ") set",Toast.LENGTH_SHORT).show();
-                            case R.id.emailImage2:
+                                Log.d("Coordinates Set", sets[0][0] + " " + sets[0][1]);
+                                break;
+                            case R.id.weatherImage2:
                                 sets[1][0] = lP.leftMargin;
                                 sets[1][1] = lP.topMargin;
-                                Toast.makeText(getActivity(), "Coordinates ("+ sets[1][0] + ", " + sets[1][1] + ") set",Toast.LENGTH_SHORT).show();
+                                Log.d("Coordinates Set", sets[1][0] + " " + sets[1][1]);
+                                break;
                         }
                 }
                 dragdropLayout.invalidate();

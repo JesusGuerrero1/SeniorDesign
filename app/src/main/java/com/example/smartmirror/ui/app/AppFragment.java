@@ -7,7 +7,6 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,10 +18,11 @@ import com.example.smartmirror.R;
 import com.example.smartmirror.data;
 import com.example.smartmirror.sqlData;
 
+import java.util.concurrent.ExecutionException;
+
 public class AppFragment extends Fragment {
 
     private AppViewModel appViewModel;
-    private String cX, cY;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,21 +59,30 @@ public class AppFragment extends Fragment {
         getBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new sqlData(getContext(), data.x,data.y,0).execute();
-                Toast.makeText(getActivity(),data.coordinates,Toast.LENGTH_SHORT).show();
+                String newData = "";
+                try {
+                    newData = new sqlData(getContext(), data.page1Data,0).execute().get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                data.parseReceivedData(newData);
             }
         });
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cX = data.x + "";
-                cY = data.y + "";
-                new sqlData(getContext(),data.x,data.y,1).execute(cX,cY);
-                Toast.makeText(getActivity(),data.coordinates,Toast.LENGTH_SHORT).show();
+                String id = data.personId+"";
+                data.parseData(data.page1Data,data.clockEnabled,data.xClock,data.yClock,data.weatherEnabled,data.xWeather,data.yWeather);
+                new sqlData(getContext(),data.page1Data,1).execute(id);
             }
         });
 
         return root;
     }
+
+
+
 }

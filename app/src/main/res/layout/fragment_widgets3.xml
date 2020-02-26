@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.166" />
 
     <ImageButton
-        android:id="@+id/addEmail3"
+        android:id="@+id/addWeather3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -52,20 +52,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="116dp"
-        android:layout_marginRight="116dp"
-        android:text="Email"
+        android:layout_marginEnd="110dp"
+        android:layout_marginRight="110dp"
+        android:text="Weather"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addEmail3" />
+        app:layout_constraintTop_toBottomOf="@+id/addWeather3" />
 
     <TextView
         android:id="@+id/titleText3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="140dp"
-        android:layout_marginRight="140dp"
-        android:text="Add Widget"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:text="@string/add_widget"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

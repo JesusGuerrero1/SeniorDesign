@@ -25,12 +25,12 @@
             android:src="@drawable/ic_clock_black_24dp"/>
 
         <ImageView
-            android:id="@+id/email2"
+            android:id="@+id/weather2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:src="@drawable/ic_email_black_24dp" />
+            android:src="@drawable/ic_ac_unit_black_24dp" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,7 +20,7 @@ public class WidgetsFragment extends Fragment {
 
         // initiate view's
         ImageButton addClockBtn = root.findViewById(R.id.addClock);
-        ImageButton addEmailBtn = root.findViewById(R.id.addEmail);
+        ImageButton addWeatherBtn = root.findViewById(R.id.addWeather);
 
 
 
@@ -39,15 +39,15 @@ public class WidgetsFragment extends Fragment {
                 switchFragment();
             }
         });
-        addEmailBtn.setOnClickListener(new View.OnClickListener() {
+        addWeatherBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!data.emailEnabled){
-                    data.emailEnabled = true;
+                if(!data.weatherEnabled){
+                    data.weatherEnabled = true;
                     Toast.makeText(getActivity(),"Added Email",Toast.LENGTH_LONG).show();// display the toast on you tube button click
                 }
                 else{
-                    data.emailEnabled = false;
+                    data.weatherEnabled = false;
                     Toast.makeText(getActivity(),"Removed Email",Toast.LENGTH_LONG).show();// display the toast on you tube button click
                 }
                 switchFragment();

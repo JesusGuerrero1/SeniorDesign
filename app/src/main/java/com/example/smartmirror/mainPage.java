@@ -94,8 +94,8 @@ public class mainPage extends AppCompatActivity {
             Glide.with(this).load(data.personPhoto).into(photoHeader);
             nameHeader.setText(data.personName);
             emailHeader.setText(data.personEmail);
-
         }
+        Log.e("Id",data.personId);
     }
 
     @Override

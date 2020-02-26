@@ -21,7 +21,13 @@
     <string name="settings">Settings</string>
 
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="click_the_tabs_on_the_right_to_navigate">Click the tabs on the right to navigate.\nDrag widgets in the edit tab to organize their look.\nClick save to confirm their location.</string>
+
+    <string name="add_widget">Add/Remove Widget</string>
+    <string name="facial_recognition">Manage images for facial recognition:</string>
+    <string name="get_data">Receive previously saved data:</string>
+    <string name="upload_data">Upload data to be saved:</string>
+    <string name="mirror_ip_address">Mirror IP address</string>
 
 
 </resources>
